@@ -7,14 +7,13 @@ import type { RouteMatch } from "./routeMatching";
 export function getDocumentHeaders(
   build: ServerBuild,
   matches: RouteMatch<ServerRoute>[],
-  routeLoaderResponses: Response[],
+  routeLoaderResponses: Record<string, Response>,
   actionResponse?: Response
 ): Headers {
-  return matches.reduce((parentHeaders, match, index) => {
+  return matches.reduce((parentHeaders, match) => {
     let routeModule = build.routes[match.route.id].module;
-    let loaderHeaders = routeLoaderResponses[index]
-      ? routeLoaderResponses[index].headers
-      : new Headers();
+    let loaderHeaders =
+      routeLoaderResponses[match.route.id]?.headers ?? new Headers();
     let actionHeaders = actionResponse ? actionResponse.headers : new Headers();
     let headers = new Headers(
       routeModule.headers

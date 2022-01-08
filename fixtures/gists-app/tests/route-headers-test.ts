@@ -44,4 +44,32 @@ describe("route headers", () => {
       );
     });
   });
+
+  describe("from a pathful route", () => {
+    it("passes the correct loader result to the route's headers function", async () => {
+      let responses = collectResponses(
+        page,
+        url => url.pathname === "/route-headers"
+      );
+
+      await page.goto(`${testServer}/route-headers`);
+
+      expect(responses).toHaveLength(1);
+      expect(responses[0].headers()["route"]).toEqual("/route-headers");
+    });
+  });
+
+  describe("from a child of a pathless route", () => {
+    it("passes the correct loader result to the route's headers function", async () => {
+      let responses = collectResponses(
+        page,
+        url => url.pathname === "/with-layout"
+      );
+
+      await page.goto(`${testServer}/with-layout`);
+
+      expect(responses).toHaveLength(1);
+      expect(responses[0].headers()["route"]).toEqual("/__layout/with-layout");
+    });
+  });
 });

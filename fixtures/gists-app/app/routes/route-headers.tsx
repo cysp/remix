@@ -5,7 +5,7 @@ export const loader: LoaderFunction = () => {
     {},
     {
       headers: {
-        route: "/__layout/with-layout"
+        route: "/route-headers"
       }
     }
   );
@@ -15,10 +15,6 @@ export const headers: HeadersFunction = ({ loaderHeaders }) => {
   return loaderHeaders;
 };
 
-export default function WithLayout() {
-  return (
-    <div>
-      <h1>Page inside layout</h1>
-    </div>
-  );
+export default function RouteHeadersIndex() {
+  return <></>;
 }

@@ -438,6 +438,14 @@ describe("readConfig", () => {
             "parentId": "root",
             "path": "resources/theme-css",
           },
+          "routes/route-headers": Object {
+            "caseSensitive": undefined,
+            "file": "routes/route-headers.tsx",
+            "id": "routes/route-headers",
+            "index": undefined,
+            "parentId": "root",
+            "path": "route-headers",
+          },
           "routes/two": Object {
             "caseSensitive": undefined,
             "file": "routes/two.md",
