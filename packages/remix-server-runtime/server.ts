@@ -323,7 +323,6 @@ async function renderDocumentRequest({
   appState.catch = undefined;
   appState.error = undefined;
 
-  let headerMatches: RouteMatch<ServerRoute>[] = [];
   let routeLoaderResponses: Map<string, Response> = new Map();
   let loaderStatusCodes: number[] = [];
   let routeData: Record<string, unknown> = {};
@@ -371,7 +370,6 @@ async function renderDocumentRequest({
       }
       break;
     } else if (response) {
-      headerMatches.push(match);
       routeLoaderResponses.set(match.route.id, response);
       loaderStatusCodes.push(response.status);
 
